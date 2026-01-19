@@ -5,7 +5,16 @@
 ![Status](https://img.shields.io/badge/status-MVP-green.svg)
 
 ## 1. Overview
-... (rest of the overview) ...
+
+**SentinelOps** is a distributed, real-time observability platform designed to monitor Singapore's public transit infrastructure. By ingesting live traffic data from the **LTA DataMall API**, the system leverages an **AI Agent (GPT-4o)** to perform instant impact analysis, categorizing incidents by severity (1-10) and summarizing operational risks.
+
+Built with "Big Tech" engineering standards (Microservices, Event-Driven, Cloud-Native), this project demonstrates a production-grade architecture suitable for high-scale urban monitoring.
+
+### Key Features
+*   **Real-Time Ingestion (Go):** High-concurrency polling of LTA APIs using Goroutines. Includes a **Mock Mode** for offline development.
+*   **AI Analyst (Python/FastAPI):** Autonomous agent that processes raw incident text into structured intelligence (Impact Score + Executive Summary).
+*   **Geospatial Database (PostgreSQL/Supabase):** Centralized state management with `pgvector` readiness for future semantic search.
+*   **Live Dashboard (Next.js 15):** React Server Components (RSC) and Leaflet maps for high-performance visualization.
 
 ---
 
