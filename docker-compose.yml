@@ -1,0 +1,28 @@
+services:
+  db:
+    image: ankane/pgvector:latest # PostgreSQL with AI vector support
+    environment:
+      POSTGRES_USER: simon_admin
+      POSTGRES_PASSWORD: sentinel_password
+      POSTGRES_DB: sentinel_ops
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./database:/docker-entrypoint-initdb.d
+      - postgres_data:/var/lib/postgresql/data
+
+  ingestor:
+    build: ./services/ingestor
+    environment:
+      LTA_API_KEY: ${LTA_API_KEY}
+      DB_URL: postgres://simon_admin:sentinel_password@db:5432/sentinel_ops
+    depends_on:
+      - db
+
+  analyst:
+    build: ./services/analyst
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:
